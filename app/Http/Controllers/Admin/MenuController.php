@@ -28,7 +28,7 @@ class MenuController extends Controller
     }
     public function show($MenuID)
     {
-        return view('admins.menu.index');
+        return "ok show";
     }
     public function edit($MenuID)
     {
@@ -41,7 +41,7 @@ class MenuController extends Controller
         $menu = Menu::where('MenuID', $MenuID)->first();
         $update = $request->all();
         $menu->update($update);
-        return redirect()->action('MenuController@index');
+        return redirect()->action('Admin\MenuController@index');
     }
     public function destroy($MenuID)
     {
