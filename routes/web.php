@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MenuController;
-use App\Models\Menu;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Routing\RouteUri;
+use App\Models\Menu;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +21,4 @@ use Illuminate\Routing\RouteUri;
 Route::get('/', 'Page\HomeController@index');
 Route::get('Dashboard', 'Admin\HomeController@index');
 Route::resource("/Dashboard/Menu",MenuController::class);
+Route::resource("/Dashboard/Product", ProductController::class);
