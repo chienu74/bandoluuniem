@@ -5,7 +5,7 @@
         <div class="container-xl">
             <h1 class="app-page-title">Overview</h1>
             <div class="row gy-4">
-                <form action="{{ url('Dashboard/Menu')}}" method="POST">
+                <form action="{{ url('Admin/Menu')}}" method="POST">
                     @csrf 
                     <div class="form-group">
                         <label for="MenuName">Tên menu</label>

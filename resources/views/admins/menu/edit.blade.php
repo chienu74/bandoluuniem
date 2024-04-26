@@ -5,7 +5,7 @@
         <div class="container-xl">
             <h1 class="app-page-title">Overview</h1>
             <div class="row gy-4">
-                <form action="{{ url('Dashboard/Menu/'.$menus->MenuID) }}" method="POST">
+                <form action="{{ url('Admin/Menu/'.$menus->MenuID) }}" method="POST">
                     @csrf 
                     {{-- @method('PUT/PATCH') --}}
                     @method('PUT')

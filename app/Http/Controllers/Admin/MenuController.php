@@ -24,16 +24,20 @@ class MenuController extends Controller
     {
         $data = $request->all();
         Menu::create($data);
-        return redirect('/Dashboard/Menu');
+        return redirect('/Admin/Menu');
     }
     public function show($MenuID)
     {
-        return "ok show";
+        $menus = Menu::all();
+        $ParentMenus = Menu::select('MenuID', 'MenuName')->get();
+        return view('admins.menu.index', compact('menus', 'ParentMenus'));
     }
     public function edit($MenuID)
     {
         $menus = Menu::where('MenuID', $MenuID)->first();
-        $ParentMenus = Menu::select('MenuID', 'MenuName')->get();
+        $ParentMenus = Menu::select('MenuID', 'MenuName')
+        ->whereNotIn('MenuID',[$MenuID])
+        ->get();
         return view('admins.menu.edit', compact('menus', 'ParentMenus'));
     }
     public function update(Request $request, $MenuID)
@@ -46,6 +50,6 @@ class MenuController extends Controller
     public function destroy($MenuID)
     {
         Menu::where('MenuID', $MenuID)->delete();
-        return redirect('/Dashboard/Menu');
+        return redirect('/Admin/Menu');
     }
 }

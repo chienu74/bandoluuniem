@@ -8,8 +8,9 @@ use App\Models\Menu;
 
 class HomeController extends Controller
 {
-    public function index(){
-        $menus=Menu::all();
-        return view('pages.home',compact('menus'));
+    public function index()
+    {
+        $menus = Menu::all();
+        return view('pages.home', compact('menus'));
     }
 }

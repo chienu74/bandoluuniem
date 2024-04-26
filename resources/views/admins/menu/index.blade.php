@@ -5,7 +5,7 @@
 	<div class="app-content pt-3 p-md-3 p-lg-4">
 		<div class="container-xl">
 			<h1 class="app-page-title">Overview</h1>
-			<a href="Menu/create">Tạo mới menu</a>
+			<a href="{{url('Admin/Menu/create')}}">Tạo mới menu</a>
 			<div class="tab-content" id="orders-table-tab-content">
 				<div class="tab-pane fade active show" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
 					<div class="app-card app-card-orders-table shadow-sm mb-5">
@@ -24,21 +24,27 @@
 										</tr>
 									</thead>
 									<tbody>
+										@php
+											$i=1;
+										@endphp	
 										@foreach ($menus as $menu)
 										<tr>
-											<td class="cell">{{ $menu->MenuID }}</td>
+											<td class="cell">{{ $i }}</td>
+											@php
+												$i++;
+											@endphp
 											<td class="cell"><span class="truncate">{{ $menu->MenuName }}</span></td>
-											<td>{{ $menu->ParentID }}</td>
-											<td>{{ $menu->CreateBy }}</td>
-											<td>{{ $menu->CreateDate }}</td>
-											<td>{{ $menu->ModifyBy }}</td>
-											<td>{{ $menu->ModifyDate }}</td>
+											<td class="cell">{{ $menu->ParentID }}</td>
+											<td class="cell">{{ $menu->CreateBy }}</td>
+											<td class="cell">{{ $menu->CreateDate }}</td>
+											<td class="cell">{{ $menu->ModifyBy }}</td>
+											<td class="cell">{{ $menu->ModifyDate }}</td>
 											<td class="cell">
-												<a class="btn btn-primary" href="{{ url('/Dashboard/Menu/'.$menu->MenuID).'/edit'}}">Sửa</a>
-												<form action="{{ url('Dashboard/Menu/'.$menu->MenuID)}}" method="POST">
+												<a class="btn btn-primary" href="{{ url('/Admin/Menu/'.$menu->MenuID).'/edit'}}">Sửa</a>
+												<form action="{{ url('Admin/Menu/'.$menu->MenuID)}}" method="POST">
 													@csrf
 													@method('DELETE')
-													<button type="submit"  class="btn btn-danger" href="{{ url('/Dashboard/Menu'.'/'.$menu->MenuID)}}"
+													<button type="submit"  class="btn btn-danger" href="{{ url('/Admin/Menu'.'/'.$menu->MenuID)}}"
 														onclick="return confirm('Xác nhận xóa')">
 														Xóa
 													</button>
