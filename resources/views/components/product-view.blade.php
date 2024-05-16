@@ -1,16 +1,12 @@
-@extends('layouts.page')
-@section('content')
-<!-- shop section -->
-
 <section class="shop_section layout_padding">
     <div class="container">
         <div class="heading_container heading_center">
             <h2>
-                Danh sách sản phẩm
+                Latest Products
             </h2>
         </div>
         <div class="row">
-            @foreach($products as $item)
+            @foreach ($Products as $item)
             <div class="col-sm-6 col-md-4 col-lg-3">
                 <div class="box">
                     <a href="{{'/ProductDetail?ProductID='.$item->ProductID}}">
@@ -36,11 +32,14 @@
                     </a>
                 </div>
             </div>
+
+
             @endforeach
         </div>
-        {{ $products->links('vendor.pagination.admin') }}
+        <div class="btn-box">
+            <a href="">
+                View All Products
+            </a>
+        </div>
     </div>
 </section>
-
-<!-- end shop section -->
-@endsection

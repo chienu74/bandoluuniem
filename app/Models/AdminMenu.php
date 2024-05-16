@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AdminMenu extends Model
 {
-    //use HasFactory;
+    use HasFactory;
     protected $table = 'AdminMenu';
     protected $primaryKey = 'AdminMenuID';
     protected $fillable = ['AdminMenuID', 'AdminMenuName', 'Alias', 'ParentID','Link'];

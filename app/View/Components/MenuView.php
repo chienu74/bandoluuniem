@@ -10,10 +10,14 @@ use App\Models\Menu;
 class MenuView extends Component
 {
     public $menus;
+    public $login;
+    public $id;
 
     public function __construct()
     {
         $this->menus = Menu::all();
+        $this->login = session()->get('login');
+        $this->id = session()->get('id');
     }
 
     public function render(): View|Closure|string

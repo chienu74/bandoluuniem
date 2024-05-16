@@ -11,7 +11,7 @@
 
     <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
     <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
-    
+
     <link rel="shortcut icon" href="favicon.ico">
 
     <!-- FontAwesome JS-->
@@ -27,11 +27,12 @@
 
 <body class="app">
     <header class="app-header fixed-top">
-		@include('admins.partials/header')
-		@include('admins.partials.slider')
-    </header><!--//app-header-->
+        @include('admins.partials/header')
+        @include('admins.partials.slider')
+    </header>
+    <!--//app-header-->
 
-   @yield('content')
+    @yield('content')
 
 
     <!-- Javascript -->

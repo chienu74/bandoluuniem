@@ -8,11 +8,17 @@ use App\Models\Menu;
 
 class MenuController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $menus = Menu::all();
-        $ParentMenus = Menu::select('MenuID', 'MenuName')->get();
-        return view('admins.menu.index', compact('menus', 'ParentMenus'));
+        $search = $request->search;
+        if (!isset($request->search)) {
+            $search = '';
+        }
+        $menus = Menu::select('*')
+            ->where('MenuName', 'like', '%' . $search . '%')
+            ->paginate(5);
+        $menus->appends(['search' => $search]);
+        return view('admins.menu.index', compact('menus'));
     }
     public function create()
     {
@@ -36,8 +42,8 @@ class MenuController extends Controller
     {
         $menus = Menu::where('MenuID', $MenuID)->first();
         $ParentMenus = Menu::select('MenuID', 'MenuName')
-        ->whereNotIn('MenuID',[$MenuID])
-        ->get();
+            ->whereNotIn('MenuID', [$MenuID])
+            ->get();
         return view('admins.menu.edit', compact('menus', 'ParentMenus'));
     }
     public function update(Request $request, $MenuID)

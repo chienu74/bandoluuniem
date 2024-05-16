@@ -11,9 +11,15 @@ use App\Models\Product;
 
 class ProductCategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $ProductCategorys = ProductCategory::all();
+        $search = $request->search;
+        if (!isset($request->search)) {
+            $search = '';
+        }
+        $ProductCategorys = ProductCategory::where('ProductCategoryName', 'like', '%' . $search . '%')
+            ->paginate(10);
+        $ProductCategorys->appends(['search' => $search]);
         return view('admins.productCategory.index', compact('ProductCategorys'));
     }
     public function create()

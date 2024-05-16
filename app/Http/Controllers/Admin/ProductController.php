@@ -12,12 +12,18 @@ use Illuminate\Http\UploadedFile;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+        if (!isset($request->search)) {
+            $search = '';
+        }
         $Products = DB::table('Product')
             ->join('ProductCategory', 'ProductCategory.ProductCategoryID', '=', 'Product.ProductCategoryID')
             ->select('Product.*', 'ProductCategory.ProductCategoryName')
-            ->get();
+            ->where('ProductName', 'like', '%' . $search . '%')
+            ->paginate(10);
+        $Products->appends(['search' => $search]);
         return view('admins.product.index', compact('Products'));
     }
     public function create()
